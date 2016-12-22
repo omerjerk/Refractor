@@ -1,0 +1,12 @@
+#!/usr/bin/python
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Refractor CLI Tool')
+subparsers = parser.add_subparsers(help='options')
+
+#setup command
+setup_parser = subparsers.add_parser('setup', help='Setup the Refractor project')
+setup_parser.add_argument('apk', action='store', help='APK to refractor')
+
+print parser.parse_args()
