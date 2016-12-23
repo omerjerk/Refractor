@@ -9,4 +9,8 @@ subparsers = parser.add_subparsers(help='options')
 setup_parser = subparsers.add_parser('setup', help='Setup the Refractor project')
 setup_parser.add_argument('apk', action='store', help='APK to refractor')
 
+#compile command
+compile_parser = subparsers.add_parser('compile', help='Compile the project')
+compile_parser.add_argument('project_loc', action='store', help='Path of the project to compile')
+
 print parser.parse_args()
