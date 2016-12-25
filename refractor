@@ -2,8 +2,14 @@
 
 import argparse
 
+def setup(apk):
+	print 'apk location = {0}'.format(apk)
+
+def commpile(project):
+	print 'project loc = {0}'.format(project)
+
 parser = argparse.ArgumentParser(description='Refractor CLI Tool')
-subparsers = parser.add_subparsers(help='options')
+subparsers = parser.add_subparsers(dest='sub_command', help='options')
 
 #setup command
 setup_parser = subparsers.add_parser('setup', help='Setup the Refractor project')
@@ -13,4 +19,14 @@ setup_parser.add_argument('apk', action='store', help='APK to refractor')
 compile_parser = subparsers.add_parser('compile', help='Compile the project')
 compile_parser.add_argument('project_loc', action='store', help='Path of the project to compile')
 
-print parser.parse_args()
+args = parser.parse_args()
+print args.sub_command
+
+sub_command = args.sub_command
+
+if sub_command == 'setup':
+	setup(args.apk)
+elif sub_command == 'compile':
+	compile(args.project_loc)
+else:
+	print 'Illegal sub command'
