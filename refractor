@@ -1,8 +1,10 @@
 #!/usr/bin/python
 
 import argparse
+from util.general import *
 
 def setup(apk):
+	print default_workspace_location()
 	print 'apk location = {0}'.format(apk)
 
 def commpile(project):
