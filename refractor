@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os
 import argparse
-from subprocess import call
+import subprocess
 
 from util.general import *
 
@@ -13,11 +13,12 @@ def setup(apk):
     print "================================"
     project_loc = default_workspace_loc()
     file_name = os.path.basename(apk).split('.')[0]
-    project_loc += file_name
+    project_loc += "/" + file_name
     if not os.path.exists(project_loc):
         os.makedirs(project_loc)
+    decompile_loc = project_loc + "/decompiled"
     apktool = get_apktool_loc()
-    subprocess.call([apktool, "d", "-o", project_loc, "-f", apk], stdout=FNULL, stderr=subprocess.STDOUT)
+    subprocess.call([apktool, "d", "-o", decompile_loc, "-f", apk], stdout=FNULL, stderr=subprocess.STDOUT)
     print ""
     print 'The project structure for {0} is setup.'.format(os.path.basename(apk))
 
