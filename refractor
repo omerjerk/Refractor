@@ -5,6 +5,8 @@ from subprocess import call
 
 from util.general import *
 
+FNULL = open(os.devnull, 'w')
+
 def setup(apk):
     print "================================"
     print "Setting up the Refractor project"
@@ -15,7 +17,7 @@ def setup(apk):
     if not os.path.exists(project_loc):
         os.makedirs(project_loc)
     apktool = get_apktool_loc()
-    call([apktool, "d", "-o", project_loc, "-f", apk])
+    subprocess.call([apktool, "d", "-o", project_loc, "-f", apk], stdout=FNULL, stderr=subprocess.STDOUT)
     print ""
     print 'The project structure for {0} is setup.'.format(os.path.basename(apk))
 
