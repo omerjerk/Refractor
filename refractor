@@ -4,6 +4,7 @@ import argparse
 import subprocess
 
 from util.general import *
+from util.override import *
 
 FNULL = open(os.devnull, 'w')
 
@@ -19,6 +20,9 @@ def setup(apk):
     decompile_loc = project_loc + "/decompiled"
     apktool = get_apktool_loc()
     subprocess.call([apktool, "d", "-o", decompile_loc, "-f", apk], stdout=FNULL, stderr=subprocess.STDOUT)
+
+    write_override_dummy(project_loc)
+
     print ""
     print 'The project structure for {0} is setup.'.format(os.path.basename(apk))
 
